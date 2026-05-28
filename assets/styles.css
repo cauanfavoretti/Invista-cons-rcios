@@ -77,6 +77,12 @@
     radial-gradient(60% 80% at 100% 50%, rgba(0,20,90,.30), transparent 70%);
     z-index:-1}
   .hero .grid{padding:48px 0;max-width:760px;position:relative;z-index:1;width:100%}
+  @media (min-width:981px){
+    .hero .container{margin-left:80px;margin-right:0}
+    .hero .grid{padding:48px 10px 48px 0}
+    .hero-headline{font-size:70px;margin:54px 10px 0 0}
+    .hero-sub{margin:28px 100px 0 0 !important}
+  }
   .hero .eyebrow{color:var(--gold-soft)}
   .hero .eyebrow::before{background:var(--gold-soft)}
   .hero h1{color:#fff}
