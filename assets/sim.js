@@ -1,4 +1,16 @@
 (function() {
+  // ===== Mobile hamburger menu =====
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks  = document.querySelector('nav.links');
+  const overlay   = document.getElementById('nav-overlay');
+  if (hamburger && navLinks && overlay) {
+    const open  = () => { hamburger.classList.add('is-open'); navLinks.classList.add('is-open'); overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; };
+    const close = () => { hamburger.classList.remove('is-open'); navLinks.classList.remove('is-open'); overlay.classList.remove('is-open'); document.body.style.overflow = ''; };
+    hamburger.addEventListener('click', () => hamburger.classList.contains('is-open') ? close() : open());
+    overlay.addEventListener('click', close);
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  }
+
   // ===== Hero parallax =====
   const heroBg = document.querySelector('.hero-parallax-bg');
   if (heroBg) {
