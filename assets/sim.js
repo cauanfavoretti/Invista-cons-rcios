@@ -1,4 +1,13 @@
 (function() {
+  // ===== Hero parallax =====
+  const heroBg = document.querySelector('.hero-parallax-bg');
+  if (heroBg) {
+    const onScroll = () => {
+      heroBg.style.transform = 'translateY(' + (window.scrollY * 0.35) + 'px)';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   // ===== FAQ accordion =====
   document.querySelectorAll('.faq-item .faq-q').forEach(q => {
     q.addEventListener('click', () => {
