@@ -1,0 +1,9 @@
+# robots.txt - Invista Consórcios
+# Permite indexação por buscadores e crawlers de IA (visibilidade de marca)
+
+User-agent: *
+Allow: /
+
+# Páginas em construção / duplicadas já usam <meta name="robots" content="noindex">
+
+Sitemap: https://invconsorcios.com.br/sitemap.xml
