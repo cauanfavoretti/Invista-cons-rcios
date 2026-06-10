@@ -8,6 +8,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+/* GHL Form Success Overlay */
+#gso{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(0,19,64,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease}
+#gso.gso-on{opacity:1;visibility:visible}
+.gso-close{position:absolute;top:22px;right:22px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.5);opacity:0;transition:background .2s,color .2s,border-color .2s;flex-shrink:0}
+.gso-close:hover{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.3)}
+.gso-inner{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px 32px 8px;max-width:460px;width:90%}
+.gso-glow{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(0,61,255,.28) 0%,transparent 68%);opacity:0;pointer-events:none}
+.gso-svg{width:136px;height:136px;overflow:visible;position:relative;z-index:1}
+.gso-ring{stroke-dasharray:276;stroke-dashoffset:276;transform-box:fill-box;transform-origin:center;transform:rotate(-90deg);opacity:0}
+.gso-scan{stroke-dasharray:77 200;transform-box:fill-box;transform-origin:center;transform:rotate(-90deg)}
+.gso-check{stroke-dasharray:70;stroke-dashoffset:70}
+.gso-title{font-family:'Sora',sans-serif;color:#fff;font-size:clamp(1.15rem,3.5vw,1.5rem);font-weight:700;line-height:1.3;margin:28px 0 10px;opacity:0;transform:translateY(14px)}
+.gso-body{font-family:'DM Sans',sans-serif;color:rgba(180,210,255,.82);font-size:1rem;margin:0 0 4px;opacity:0;transform:translateY(10px)}
+/* Animations start only when overlay is shown */
+#gso.gso-on .gso-glow{animation:gso-glow-in .9s ease forwards .2s}
+#gso.gso-on .gso-svg{animation:gso-icon-glow .7s ease forwards 2.1s}
+#gso.gso-on .gso-scan{animation:gso-spin 1.3s cubic-bezier(.45,0,.55,1) forwards .2s}
+#gso.gso-on .gso-ring{animation:gso-ring-draw .4s ease forwards 1.4s}
+#gso.gso-on .gso-check{animation:gso-check-draw .72s cubic-bezier(.2,.8,.3,1.05) forwards 1.6s}
+#gso.gso-on .gso-title{animation:gso-fade-up .55s ease forwards 2.2s}
+#gso.gso-on .gso-body{animation:gso-fade-up .55s ease forwards 2.5s}
+#gso.gso-on .gso-close{animation:gso-fade-in .4s ease forwards 2.85s}
+@keyframes gso-glow-in{to{opacity:1}}
+@keyframes gso-icon-glow{to{filter:drop-shadow(0 0 16px rgba(0,61,255,.65))}}
+@keyframes gso-spin{
+  0%{transform:rotate(-90deg);stroke-dasharray:77 200;opacity:1}
+  72%{transform:rotate(270deg);stroke-dasharray:77 200;opacity:1}
+  88%{transform:rotate(330deg);stroke-dasharray:276 0;opacity:1}
+  100%{transform:rotate(360deg);stroke-dasharray:276 0;opacity:0}
+}
+@keyframes gso-ring-draw{from{stroke-dashoffset:276;opacity:0}to{stroke-dashoffset:0;opacity:.38}}
+@keyframes gso-check-draw{to{stroke-dashoffset:0}}
+@keyframes gso-fade-up{to{opacity:1;transform:translateY(0)}}
+@keyframes gso-fade-in{to{opacity:1}}
+</style>
 <meta name="description" content="Fale com a equipe da Invista Consórcios. Atendimento consultivo e direto com os sócios para estruturar seu plano de consórcio. Resposta em até 30 min." />
 <meta name="robots" content="index, follow" />
 <meta name="author" content="Invista Consórcios" />
@@ -80,4 +116,56 @@
   </div>
 </section>
 <footer><div class="container"><div class="foot-grid"><div><a href="/" class="logo" aria-label="Invista Consórcios"><picture><source type="image/webp" srcset="assets/invista-logo-white.webp"><img src="assets/invista-logo-white.png" alt="Invista Consórcios" loading="lazy" decoding="async"></picture></a><p>Estratégia patrimonial e crédito planejado para investidores, famílias e empresas que querem construir valor sem juros abusivos.</p><div class="soc"><a href="https://www.instagram.com/invistaconsorcios.br/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.339 18.337V10.13H5.667v8.207zm-1.336-9.378a1.547 1.547 0 1 0 0-3.095 1.547 1.547 0 0 0 0 3.095zm11.336 9.378v-4.501c0-2.477-1.323-3.629-3.087-3.629a2.665 2.665 0 0 0-2.413 1.325v-1.402H10.18c.034.74 0 8.207 0 8.207h2.659v-4.583a1.815 1.815 0 0 1 .088-.649 1.456 1.456 0 0 1 1.364-.973c.964 0 1.348.734 1.348 1.81v4.395z"/></svg></a><a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></a></div></div><div><h4>Empresa</h4><ul><li><a href="sobre">Sobre nós</a></li><li><a href="solucoes">Soluções</a></li><li><a href="data-certa" class="">Data Certa</a></li><li><a href="clientes">Clientes</a></li><li><a href="contato">Contato</a></li></ul></div><div><h4>Conteúdo</h4><ul><li><a href="blog">Blog</a></li><li></li><li><a href="data-certa.html#simulador">Simulador</a></li></ul></div><div><h4>Contato</h4><ul><li>📞 +55 92 98594-8490</li><li>✉ <a href="mailto:consorcio@grupoinvistaseguros.com">consorcio@grupoinvistaseguros.com</a></li><li>📍 Rua Rio Javari, 361 - Nossa Sra. das Graças, Manaus - AM, 69053-110, sala 302</li></ul></div></div><div class="foot-bottom"><div>© 2026 Invista Representação Comercial LTDA · CNPJ 22.695.083/0001-13 · Todos os direitos reservados.</div><div class="legal"><a href="privacidade">Política de privacidade</a><a href="termos">Termos de uso</a></div></div></div></footer><a class="wa" href="https://wa.me/5592985948490?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20saber%20mais" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg></a><script src="assets/sim.js"></script>
-<script>window.addEventListener("load",function(){var l=document.getElementById("page-loader");if(l){l.classList.add("hidden");setTimeout(function(){l.remove()},520);}});</script><script src="assets/anim.js"></script></body></html>
+<script>window.addEventListener("load",function(){var l=document.getElementById("page-loader");if(l){l.classList.add("hidden");setTimeout(function(){l.remove()},520);}});</script><script src="assets/anim.js"></script>
+<!-- GHL Form Success Overlay -->
+<div id="gso" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="gso-h">
+  <button class="gso-close" aria-label="Fechar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="gso-inner">
+    <div class="gso-glow"></div>
+    <svg class="gso-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle class="gso-track" cx="50" cy="50" r="44" stroke="rgba(0,61,255,0.15)" stroke-width="1.5"/>
+      <circle class="gso-scan" cx="50" cy="50" r="44" stroke="#003DFF" stroke-width="2.5" stroke-linecap="round"/>
+      <circle class="gso-ring" cx="50" cy="50" r="44" stroke="#003DFF" stroke-width="2"/>
+      <path class="gso-check" d="M28 51 L44 67 L72 32" stroke="#003DFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h2 class="gso-title" id="gso-h">Obrigado por escolher a Invista Consórcios</h2>
+    <p class="gso-body">Em breve entraremos em contato com você</p>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('gso');
+  if(!el)return;
+  function show(){
+    el.classList.remove('gso-on');
+    void el.offsetWidth; // reset animations
+    el.classList.add('gso-on');
+    el.setAttribute('aria-hidden','false');
+  }
+  function hide(){
+    el.classList.remove('gso-on');
+    el.setAttribute('aria-hidden','true');
+  }
+  // Listen for GHL / LeadConnector postMessage events on form submission
+  window.addEventListener('message',function(e){
+    try{
+      var d=typeof e.data==='string'?JSON.parse(e.data):e.data;
+      if(!d)return;
+      var fromGHL=e.origin&&(e.origin.indexOf('leadconnectorhq.com')>-1||e.origin.indexOf('msgsndr.com')>-1);
+      if(
+        d.type==='form-submission-success'||
+        d.type==='FORM_SUBMISSION_SUCCESS'||
+        (d.event&&(d.event==='form:submitted'||d.event==='formSubmitted'))||
+        (fromGHL&&typeof d.type==='string'&&d.type.toLowerCase().indexOf('submit')>-1)
+      )show();
+    }catch(err){}
+  });
+  // Click backdrop to dismiss
+  el.addEventListener('click',function(e){if(e.target===el)hide();});
+  el.querySelector('.gso-close').addEventListener('click',hide);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&el.classList.contains('gso-on'))hide();});
+})();
+</script>
+</body></html>
